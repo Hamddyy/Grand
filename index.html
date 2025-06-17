@@ -1,1 +1,702 @@
-hi
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+  <title>Buttons with Links</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .button-container {
+      display: flex;
+      gap: 20px; /* مسافة بين الأزرار */
+      margin-bottom: 80px; /* مسافة تحت الأزرار */
+    }
+    .button {
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .button:active {
+      transform: scale(0.95);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    .blue-button {
+      background: #2196f3;
+    }
+    .orange-button {
+      background: #ff9800;
+    }
+    .green-button {
+      background: #4caf50;
+    }
+  </style>
+</head>
+<body>
+  <!-- الأزرار -->
+  <div class="button-container">
+    <a href="go:SAVOY.STAF" class="button blue-button">Savoy Staff</a>
+    <a href="#" class="button orange-button">Sun Staff</a>
+    <a href="go:GRAND.STAF" class="button green-button">Grand Staff</a>
+  </div>
+  
+  <!-- زر إضافي -->
+  <a href="#" class="button orange-button">Sun Staff</a>
+</body>
+</html>
+ <title>Employee Search</title>
+    <style>
+        /* إعدادات عامة */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* الحاوية الرئيسية */
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* البحث */
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .search-container input[type="text"] {
+            width: 70%;
+            max-width: 400px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 10px;
+        }
+        .search-container input[type="text"]:focus {
+            border: 1px solid #007bff;
+            outline: none;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+        }
+        .search-container button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .search-container button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* الجدول */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+            padding: 15px;
+            text-align: center;
+            border: none;
+            border-radius: 10px 10px 0 0; /* جعل الرأس دائري الأطراف */
+        }
+        td {
+            padding: 15px;
+            text-align: left;
+            background-color: #f9f9f9;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        tr:nth-child(even) td {
+            background-color: #f4f4f4;
+        }
+        tr:hover td {
+            background-color: #eaf3ff;
+        }
+        td:active {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        .no-result {
+            text-align: center;
+            color: red;
+            font-size: 16px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search-container">
+            <input type="text" id="employeeInput" placeholder="Enter Employee ID or Name">
+            <button onclick="searchEmployee()">Search</button>
+        </div>
+
+        <table id="employeeTable">
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- بيانات الموظفين ستظهر هنا -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // بيانات الموظفين
+        const employees = {
+
+"4": { "name": "محمد سنوسى طه عبدالله", "jobTitle": "سائق ", "Department": "Transportation" },
+"5": { "name": "عماد طلعت سدراك ابادير", "jobTitle": "مدير النقل", "Department": "Transportation" },
+"6": { "name": "محسن نعيم شرقاوى مترى", "jobTitle": "مدير وحده اعمال النقل ", "Department": "Transportation" },
+"7": { "name": "عاطف زغلول حمدون السيد", "jobTitle": "عامل ساحه انتظار السيارات", "Department": "Transportation" },
+"8": { "name": "محمد ابو بكر فتح الله البيلى", "jobTitle": "مدير حركة السياحة", "Department": "Operation" },
+"9": { "name": "الينا سيفوتدينا", "jobTitle": "مديرة جوده", "Department": "Quality Control (Russian)" },
+"10": { "name": "جوزيف منير هنرى باسليوس", "jobTitle": "رئيس الحركه", "Department": "Transportation" },
+"11": { "name": "مينا افرايم لطيف حبيب", "jobTitle": "مدير حسابات", "Department": "Accounting" },
+"18": { "name": "انطونيوس  عزت هنرى باسليوس", "jobTitle": "موظف  ", "Department": "Accounting" },
+"25": { "name": "عصام الصديق ابراهيم احمد مجاهد", "jobTitle": "مدير عمليات السياحة ( عربى و انجليزى )", "Department": "Operation" },
+"26": { "name": "سامح سعيد زكى توفيق", "jobTitle": "مدير ايرادات", "Department": "Revenue" },
+"29": { "name": "محمد مصطفى كمال الدين مصطفى يوسف", "jobTitle": "سائق ", "Department": "Transportation" },
+"31": { "name": "ماهر على الكيلانى على", "jobTitle": "مدير مشتريات", "Department": "Assistance Services" },
+"33": { "name": "محمد شعبان محمد شحاته", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"34": { "name": "ناصر محمد عبد السميع محمد", "jobTitle": "مساعد مدير النقل ", "Department": "Transportation" },
+"38": { "name": "مايكل نسيم سعد بطرس", "jobTitle": "مدير رحلات", "Department": "Operation" },
+"39": { "name": "عادل ناجى محمد مراد", "jobTitle": "مرافق مجموعات سياحية (ايطالى)", "Department": "Operation (Italian)" },
+"41": { "name": "عزت فكرى تكلا حبشى", "jobTitle": "سائق ", "Department": "Transportation" },
+"42": { "name": "يوليا الكسندريفنا كوزلوفا", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"46": { "name": "بولا سمير الديب ابراهيم", "jobTitle": " مدير التعاقدات ", "Department": "Contracting" },
+"47": { "name": "محمد سلامه محمد زيدان", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"48": { "name": "زكريا المرسى المتولى المرسى", "jobTitle": "مدير تحليل اسعار", "Department": "Pricing" },
+"49": { "name": "جون عبده اسكندر عبده ميخائيل", "jobTitle": "سائق ", "Department": "Transportation" },
+"51": { "name": "احمد محمد عبد الحميد ناصر", "jobTitle": "مدير ادارة الحجز", "Department": "Reservation" },
+"52": { "name": "محمد محمود محمد غازى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"54": { "name": "رمضان محمود محمود النجار", "jobTitle": "سائق ", "Department": "Transportation" },
+"57": { "name": "هانا هاورد", "jobTitle": "مديره التسويق الرقمي", "Department": "Marketing" },
+"58": { "name": "شادى ايهاب رزق الله نجيب", "jobTitle": "مساعد مدير عقود السوق الانجليزى والاوروبى ", "Department": "Contracting" },
+"60": { "name": "وليد احمد عبد الحميد السيد عطيفى", "jobTitle": "مدير ادارة التسويق", "Department": "Marketing" },
+"61": { "name": "على السيد محمد معارك", "jobTitle": "مدير العمليات السياحة ", "Department": "Operation" },
+"62": { "name": "احمد ابراهيم بشندى اسماعيل", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"65": { "name": "صابر فتحى محمد عبدالجيد", "jobTitle": "عامل ساحه انتظار السيارات", "Department": "Transportation" },
+"66": { "name": "الامير عبد العزيز حافظ فيصل", "jobTitle": "مدير مبيعات رحلات ", "Department": "Excursion Sales" },
+"67": { "name": "عمرو جمال ابراهيم السيد سليمان", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"70": { "name": "حسام يوسف عبد العظيم محمد ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"72": { "name": "سمير سيد محمد على قايد", "jobTitle": "رئيس مرافقين مجموعات سياحية", "Department": "Operation" },
+"73": { "name": "يوسف عبد الباسط يوسف البدرشينى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"74": { "name": "محمود مسعود قطب ابو سمره", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"75": { "name": "محمد العزب السيد العزب", "jobTitle": "مدير قسم المطار ", "Department": "Operation" },
+"78": { "name": "محمد على السيد محمد ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"79": { "name": "محمد احمد محمد اسماعيل الحناوى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"83": { "name": "سعيد صفا قرنى دسوقى", "jobTitle": "عامل ساحه انتظار السيارات", "Department": "Transportation" },
+"85": { "name": "احمد رفعت عبد العال محمد ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"86": { "name": "كمال عبدالحليم محمد دبل", "jobTitle": "سائق ", "Department": "Transportation" },
+"87": { "name": "سامح بهيج رزق نصرالله", "jobTitle": " مدير عمليات سياحية", "Department": "Product" },
+"89": { "name": "احمد محمد سيد مرداش", "jobTitle": "عامل ساحه انتظار السيارات", "Department": "Transportation" },
+"92": { "name": "محمد صلاح محمود محمد سليمان", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"93": { "name": "احمد حسين محمد مصطفى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"94": { "name": "اكرم عزمى مرقص حنا", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"95": { "name": "روبرت بهجت معتاز عجايبى", "jobTitle": "مساعد مدير العقود", "Department": "Contracting" },
+"110": { "name": "السيد جمعه احمد شتله", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"111": { "name": "سيد ربيع ذكى على ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"112": { "name": "محمد حسين على ابراهيم", "jobTitle": "موظف عمليات سياحية", "Department": "Operation" },
+"113": { "name": "على عبد الله على عسل", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"115": { "name": "هالينا فيكتور كاستوك", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"116": { "name": "محمد جلال جمعه حجازى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"117": { "name": "احمد فتحى عبد العظيم محمد", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"118": { "name": "الحاج محمد يحيى امام توفيق", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"130": { "name": "بطرس يوسف اسحق بطرس", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"132": { "name": "احمد محمد ابراهيم مصطفى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"134": { "name": "كريم فاروق محمد حسن عبدالعال", "jobTitle": "رئيس مرافقين مجموعات سياحية", "Department": "Operation" },
+"135": { "name": "سمير محمد صابر محمد العارف", "jobTitle": "رئيس سائقين", "Department": "Transportation" },
+"138": { "name": "حمدى احمد عبد المنعم الكيال", "jobTitle": "مساعد مدير الحجز", "Department": "Reservation" },
+"142": { "name": "محمد ابراهيم محمود السيد البطاوى ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"146": { "name": "باسم خليل نسيم خليل", "jobTitle": "مدير الحجز", "Department": "Reservation" },
+"147": { "name": "عمرو محمد يونس خليل", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"149": { "name": "ايمن محمد عبد النبى شبل محمود", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"152": { "name": "اسامه السيد مصطفى مصطفى جودة", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"153": { "name": "احمد كامل عبد السميع سالم", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"155": { "name": "محمد سعيد عبد العزيز محمد الدرينى", "jobTitle": "سائق", "Department": "Transportation" },
+"157": { "name": "يوسف عباس حسن الديب", "jobTitle": "سائق", "Department": "Transportation" },
+"160": { "name": "محمد عبده عزازى محمد", "jobTitle": "مساعد مدير حركة المطار", "Department": "Operation" },
+"161": { "name": "محمد قرنى لطيف ميهوب ", "jobTitle": "عامل ساحه انتظار السيارات", "Department": "Transportation" },
+"165": { "name": "محمد فاروق محمد عبد العال", "jobTitle": "سائق", "Department": "Transportation" },
+"166": { "name": "باسم يوسف اسكندر يوسف", "jobTitle": "مرافق مجموعات سياحية (ايطالى)", "Department": "Operation (Italian)" },
+"172": { "name": "محمد مصطفى محمد الدحدوح", "jobTitle": "سائق ", "Department": "Transportation" },
+"174": { "name": "عماد عادل سلامة مكسيموس", "jobTitle": "سائق", "Department": "Transportation" },
+"176": { "name": "حسين محمد عبد الحميد احمد شلبى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"181": { "name": "رضا الهنداوى صابر الهنداوى", "jobTitle": "سائق", "Department": "Transportation" },
+"182": { "name": "ميخائيل مجدى نجيب ميخائيل", "jobTitle": "سائق", "Department": "Transportation" },
+"184": { "name": "اسماعيل محمد متولى حسين", "jobTitle": "مشرف", "Department": "Assistance Services" },
+"187": { "name": "مصطفى محمد المغربى محمد احمد ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"188": { "name": "نبيل عبد المنعم محمد موسى", "jobTitle": "رئيس مرافقين مجموعات سياحية", "Department": "Operation" },
+"189": { "name": "رجب محمد سيد عبد العال", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"190": { "name": "احمد سميح قنديل غنيم  ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"191": { "name": "محمد عبده محمد خليل", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"210": { "name": "محمد على احمد شتات", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"212": { "name": "ايهاب مصطفى عبدالله مصطفى ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"215": { "name": "احمد على محمد أبو فايد", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"216": { "name": "حسين مسعد محمد محمد ", "jobTitle": "مراقب جودة", "Department": "Quality Control (Russian)" },
+"221": { "name": "احمد عصام الدين خليل محمود عبدالدايم", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"223": { "name": "محمد الكردى محمود متولى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"225": { "name": "محمود عمر السيد بخيت", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"226": { "name": "احمد ابراهيم سليمان الخولى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"227": { "name": "اشرف محمد احمد خليل", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"228": { "name": "نادر عبدالله عبدالمعطى عبدالكريم", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Poland" },
+"232": { "name": "نسرين عبد العظيم الزعزاع", "jobTitle": "مساعد مدير تسويق", "Department": "Marketing" },
+"235": { "name": "احمد جبيلى رمضان مهدى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"237": { "name": "احمد محمد السيد غنيم", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"240": { "name": "طارق ابوزيد محمد العليمى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"244": { "name": "وائل احمد عصام السيد مرسى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"245": { "name": "ايهاب عبدالقادر علي عبدربه ", "jobTitle": "محاسب", "Department": "Accounting" },
+"250": { "name": "شريف حسان عطيه حسان ", "jobTitle": "مشرف خدمة العملاء", "Department": "Call Center" },
+"251": { "name": "وليد حمدى محمد على اسماعيل", "jobTitle": "مدير شئون العاملين", "Department": "Human Resources" },
+"252": { "name": "احمد فرج حسن عطاالله", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"254": { "name": "عبدالحميد السيد محمد سالم", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"257": { "name": "احمد مصطفى عبدالله السيد", "jobTitle": "مشرف حجز ", "Department": "Reservation" },
+"263": { "name": "مسعد محمد محمد قاسم", "jobTitle": "موظف", "Department": "Assistance Services" },
+"265": { "name": "حسام عبدالعزيز رضوان خلف الله", "jobTitle": "سائق", "Department": "Transportation" },
+"266": { "name": "بيتر ادوارد كامل جرجس باسيلى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"272": { "name": "محمد ماهر عبدالسلام السحوى ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"273": { "name": "رائد زغلول تامر سمعان", "jobTitle": "سائق", "Department": "Transportation" },
+"278": { "name": "محمد سيد احمد عبدالرحيم ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"283": { "name": "ميشيل وجيه ينى عبدالسيد", "jobTitle": "موظف عمليات سياحية", "Department": "Operation" },
+"284": { "name": "احمد عبدالعزيز ابراهيم ابراهيم", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"286": { "name": "ديفيد جمال ناثان غالى", "jobTitle": "موظف عمليات سياحية", "Department": "Operation" },
+"290": { "name": "امين محمد سيد سليمان", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"295": { "name": "اشرف عطيه عرفان الدعباس", "jobTitle": "سائق", "Department": "Transportation" },
+"297": { "name": "هانى محمد كمال الدين محمد محمد عثمان ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"298": { "name": "ممدوح محمد احمد على موسى", "jobTitle": "رئيس مرافقين مجموعات سياحية", "Department": "Operation" },
+"301": { "name": "احمد محمود عبدالموجود بيومى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"303": { "name": "محمد سمير حسن حسين ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"308": { "name": "جون حربى شكرالله جرجس", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"315": { "name": "سامر عطية بشرى خليل", "jobTitle": "مساعد مدير ", "Department": "Product" },
+"321": { "name": "وليد محمد عبدالعزيز عواد المرزوقى", "jobTitle": "مدير عمليات سياحية ", "Department": "Operation" },
+"322": { "name": "محمد مصطفى كامل محمد مطاوع", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"325": { "name": "احمد سمير محمد عفيفى حسن", "jobTitle": "مساعد مدير المطار", "Department": "Operation" },
+"331": { "name": "مسليار صبرى عثمان على", "jobTitle": "مدير حركة السياحة - اوروبا", "Department": "Operation" },
+"333": { "name": "ايمن صلاح شحاته محمد راشد", "jobTitle": "مرافق مجموعات سياحية ", "Department": "Operation" },
+"342": { "name": "محمد احمد رمضان دسوقى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"345": { "name": "ابرام رمزى رزق صليب", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"357": { "name": "حسام محمود محمد الدرس", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"369": { "name": "عبده حسنى حنفى محمد", "jobTitle": "موظف نقل", "Department": "Transportation" },
+"371": { "name": "احمد حمدى محمدين احمد ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"380": { "name": "عبدالله عبدالقادر ابو الفتوح قطامش ", "jobTitle": "مشرف موارد بشريه", "Department": "Human Resources" },
+"384": { "name": "مفيد محمد العزب البدوى ", "jobTitle": "سائق", "Department": "Transportation" },
+"391": { "name": "محمد عبدالمعبود محمد ناصف ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"393": { "name": "احمد توفيق عبدالمجيد احمد الشرقاوى ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"395": { "name": "مايكل اميل اديب شحاته", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"396": { "name": "سامح محمد السيد محمد الحسينى اسماعيل", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"398": { "name": "امير محمد كمال علي علي البحيري ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"399": { "name": "سرور عوض حسن رشوان", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"400": { "name": "محمود سعيد محمود احمد فهيم ", "jobTitle": "مرافق مجموعات سياحية (ايطالى)", "Department": "Operation (Italian)" },
+"403": { "name": "حسينى صالح ابراهيم محمد", "jobTitle": "ميكانيكى", "Department": "Transportation" },
+"419": { "name": "احمد محمود ابو هاشم محمود محرم ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"427": { "name": "محمد على اسماعيل احمد مصطفى ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"430": { "name": "مصطفى فرج محمود ابراهيم زياده ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"433": { "name": "محسن سعد عبدالرحمن احمد", "jobTitle": "سائق", "Department": "Transportation" },
+"435": { "name": "ابرام وهيب شكرى ميخائيل ", "jobTitle": "محاسب", "Department": "Accounting" },
+"436": { "name": "شادى جمال رفاعى محمد ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"437": { "name": "ايمن لطفى محمد على ابراهيم", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Poland" },
+"445": { "name": "اسماعيل عبدالراضى حمزه على ", "jobTitle": "مرافق مجموعات سياحية (ايطالى)", "Department": "Operation (Italian)" },
+"452": { "name": "محمد احمد انور السيد على ", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"453": { "name": "محمود عادل عبدالخالق امام", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"468": { "name": "كارم مسعود حسن على ", "jobTitle": "مرافق مجموعات سياحية ", "Department": "Operation" },
+"470": { "name": "ايهاب سعيد محمد صالح ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"487": { "name": "ايمن احمد محمود عبدالكريم", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"491": { "name": "عمرو محمد ابوالوفا احمد محمد ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"494": { "name": "محمود صفوت محمود على ", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"497": { "name": "محمد عبدالحفيظ احمد عبده", "jobTitle": "مراقب جودة", "Department": "Quality Control (Russian)" },
+"501": { "name": "محمد قرنى فتحى عبدالفتاح ", "jobTitle": "عامل ساحه انتظار السيارات", "Department": "Transportation" },
+"503": { "name": "حسام الدين مصطفى محمد حامد", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"506": { "name": "محمد سويلم احمد  سويلم", "jobTitle": "سائق", "Department": "Transportation" },
+"507": { "name": "ابراهيم عبدالفتاح احمد عبدالغنى ", "jobTitle": "سائق", "Department": "Transportation" },
+"510": { "name": "اسلام شعبان منصور ابوشادى", "jobTitle": "مرافق مجموعات سياحية (ايطالى)", "Department": "Operation (Italian)" },
+"520": { "name": "يوسف خير شحاته امبارك", "jobTitle": "سائق", "Department": "Transportation" },
+"522": { "name": "محمود السيد عبدالغفار البيه ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"527": { "name": "جمال صلاح ابوالسعود احمد ", "jobTitle": "سائق", "Department": "Transportation" },
+"534": { "name": "احمد عبدالسلام احمد ابراهيم ", "jobTitle": "موظف ", "Department": "Assistance Services" },
+"538": { "name": "محمد محمود مصطفى محمود ابو سعد", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"539": { "name": "احمد عبدالمنعم عبداللطيف ابراهيم شداد", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"543": { "name": "اسلام على محمد على مجاهد", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"544": { "name": "تادروس صليب عيد حنين ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"545": { "name": "هانى سمير كامل متى", "jobTitle": "سائق", "Department": "Transportation" },
+"547": { "name": "مروان عبداللطيف عبدالعزيز زايد", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"551": { "name": "محمود حسين محمد محمد حسن", "jobTitle": " مدير عمليات سياحية (انجليزى)", "Department": "Operation (English)" },
+"564": { "name": "احمد محمد شحاته سالم", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"567": { "name": "اسماعيل ابراهيم محمد النجار", "jobTitle": "مساعد مدير الحجز", "Department": "Reservation" },
+"569": { "name": "سيد على حسن عبدالحليم", "jobTitle": "ميكانيكى", "Department": "Transportation" },
+"602": { "name": "خالد احمد محمد كمال ", "jobTitle": "سائق", "Department": "Transportation" },
+"605": { "name": "محمد جمال سليمان عوض محمد ", "jobTitle": "سائق", "Department": "Transportation" },
+"614": { "name": "جمال الدين ياسر جمال عوض منسى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"617": { "name": "احمد محمد بكرى السيد محمد ", "jobTitle": "مسئول ادارة المحتوى", "Department": "Call Center" },
+"621": { "name": "اكاترينا  فدورنكو", "jobTitle": "مراقب جودة", "Department": "Quality Control English" },
+"625": { "name": "السيد عبدالفتاح محمد خفاجى", "jobTitle": "موظف تحليل اسعار", "Department": "Pricing" },
+"626": { "name": "حسام جلال الدين سعد حسن", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Lithuanian" },
+"629": { "name": "ديفيد فريز نظير فريز ", "jobTitle": "مساعد مدير الحجز", "Department": "Reservation" },
+"630": { "name": "محسن رضوان عبدالحليم بسوينى عبده", "jobTitle": "موظف تحليل أسعار", "Department": "Product" },
+"636": { "name": "عمر عادل عبدالمنعم العسكرى ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"637": { "name": "نرمين محمود محمود مرسى ", "jobTitle": "مشرف عائدات", "Department": "Yielding" },
+"656": { "name": "محمد احمد عبدالله عبيد محمد", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"658": { "name": "محمد مصطفى احمد مصطفى سلام", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Poland" },
+"664": { "name": "محمد احمد عبدالحميد محمود ابوعامر", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Romanian" },
+"679": { "name": "ايمن محمد سيد احمد حتحوت", "jobTitle": "محاسب", "Department": "Accounting" },
+"680": { "name": "رضا السيد صبرى عبدالعزيز", "jobTitle": "محاسب", "Department": "Accounting" },
+"682": { "name": "محمد مجدى محمد عبدالرحيم", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"683": { "name": "محمود طارق محمد محمود ", "jobTitle": "مرافق مجموعات سياحية (ايطالى)", "Department": "Operation (Italian)" },
+"687": { "name": "احمد صلاح ابوهواش ابراهيم", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"697": { "name": "حسام عبدالعظيم محمد متولى عطيه", "jobTitle": "اخصائى حجوزات ", "Department": "Reservation" },
+"712": { "name": "محمد جمال محمد محمد", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"713": { "name": "احمد محمد السيد احمد زيدان", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"719": { "name": "مصطفى سعد محمود محمد نوفل", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"721": { "name": "محمد سالم محمد حليمه", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"722": { "name": "وهيب محمد وهبى قاسم ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Lithuanian" },
+"724": { "name": "ايمن احمد خليل عمر", "jobTitle": "سائق", "Department": "Transportation" },
+"728": { "name": "احمد محمد عادل رزق عبدالمجيد ", "jobTitle": "مشرف حجز", "Department": "Reservation" },
+"732": { "name": "احمد ابراهيم محمد ابراهيم ", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"734": { "name": "باسم اسحق نصيف رزق الله ", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"735": { "name": "محمد سيد احمد عبدالجواد الجابرى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Poland" },
+"766": { "name": "سيف الدين رقى لطفى النعمانى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"767": { "name": "محمود فتحى محمد عبدالجيد", "jobTitle": "عامل ساحه انتظار السيارات", "Department": "Transportation" },
+"769": { "name": "محمد حسن كامل حسن", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Poland" },
+"774": { "name": "اسامه السيد الحبيب عبدالله", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"778": { "name": "ابراهيم عونى احمد عباده", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"784": { "name": "محمد مصطفى على مصطفى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"798": { "name": "محمد رزق محمد رزق جعفر", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"803": { "name": "محمد محمد عبداللطيف ضيف الله ", "jobTitle": "موظف نقل", "Department": "Transportation" },
+"808": { "name": "عزت احمد حسن عبدالرحمن ", "jobTitle": "سائق", "Department": "Transportation" },
+"809": { "name": "كاترينا ماليافا ", "jobTitle": "سكرتيرة تنفيذية", "Department": "Management" },
+"813": { "name": "مصطفى عادل محمد وحيد الدين على", "jobTitle": "اخصائى  تسويق", "Department": "Marketing" },
+"816": { "name": "كيرلس فرح يسى ميخائيل ", "jobTitle": "سائق", "Department": "Transportation" },
+"817": { "name": "سفيتلانا لوت", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Estonian" },
+"818": { "name": "احمد محمد عبدالحليم حميده ", "jobTitle": "مشرف عائدات", "Department": "Yielding" },
+"820": { "name": "احمد عصام عبدالكريم عبدالغنى ابوغنيمه", "jobTitle": "موظف حجز", "Department": "Reservation" },
+"837": { "name": "محمود مجدى محمد منير يوسف", "jobTitle": "موظف حجز", "Department": "Reservation" },
+"838": { "name": "محمود اشرف صنعه على سالم", "jobTitle": "موظف تحليل اسعار", "Department": "Pricing" },
+"849": { "name": "احمد عبدالحميد عبداللطيف محمد الجمال", "jobTitle": "موظف تحليل أسعار", "Department": "Product" },
+"850": { "name": "مايكل شنوده بطرس شنوده", "jobTitle": "سائق", "Department": "Transportation" },
+"852": { "name": "اشرف صموئيل بنيامين يعقوب ", "jobTitle": "سائق", "Department": "Transportation" },
+"853": { "name": "السيد احمد السيد على", "jobTitle": "سائق", "Department": "Transportation" },
+"855": { "name": "سمير نادى فارس تاوضروس", "jobTitle": "سائق", "Department": "Transportation" },
+"857": { "name": "أحمد صالح ابواليمن الجزيرى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"858": { "name": "سمير سعيد رفعت فياض", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"862": { "name": "ايمن عبدالعال محمد عماره", "jobTitle": "سائق", "Department": "Transportation" },
+"863": { "name": "وجيه انور شاكر مرقص", "jobTitle": "مدير وحده اعمال النقل ", "Department": "Transportation" },
+"864": { "name": "شريف سمير خلف فؤاد", "jobTitle": "سائق", "Department": "Transportation" },
+"866": { "name": "وائل صابر اديب جرجس", "jobTitle": "سائق", "Department": "Transportation" },
+"867": { "name": "حنا عادل سلامه مكسيموس", "jobTitle": "سائق", "Department": "Transportation" },
+"868": { "name": "عماد جميل حلمى عبده ميخائيل", "jobTitle": "سائق", "Department": "Transportation" },
+"870": { "name": "شنوده سمير عدلى بساليوس", "jobTitle": "سائق", "Department": "Transportation" },
+"872": { "name": "سميح خالد سميح عبدالله ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"873": { "name": "على ابراهيم خليل خليل البصيلى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Poland" },
+"877": { "name": "شريف محمد حسانين سعد", "jobTitle": "مرافق مجموعات سياحية (ايطالى)", "Department": "Operation (Italian)" },
+"886": { "name": "ايهاب عبدالله عبدالمنعم مصطفى ", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"891": { "name": "رضا جورجى حنين مسيحه", "jobTitle": "سائق", "Department": "Transportation" },
+"893": { "name": "محمود محمد جوده محمد", "jobTitle": "سائق", "Department": "Transportation" },
+"894": { "name": "احمد محمد السعيد عبدالفتاح عزب", "jobTitle": "اخصائى حجوزات ", "Department": "Reservation" },
+"895": { "name": "مارك سامىى الياس نفاع", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"896": { "name": "فيلما جلاسكايتى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Lithuanian" },
+"897": { "name": "كاتالين لازاريسكى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Romanian" },
+"899": { "name": "عبدالرحمن خضر محمد احمد معروف", "jobTitle": "مرافق مجموعات سياحية (ايطالى)", "Department": "Operation (Italian)" },
+"900": { "name": "ساهر ابراهيم  عبدالخالق عبدالفتاح", "jobTitle": "موظف حجز", "Department": "Reservation" },
+"902": { "name": "احمد عاطف محمد احمد", "jobTitle": "موظف تحليل أسعار", "Department": "Product" },
+"903": { "name": "مينا القمص دوماديوس بخيت عبدالنور", "jobTitle": "مشرف نظم و معلومات", "Department": "Information Technology" },
+"905": { "name": "احمد عبدالشافى ابوالوفا احمد", "jobTitle": "مرافق مجموعات سياحي", "Department": "Operation" },
+"915": { "name": "بولا سامى عبدالسيد مجلع", "jobTitle": "موظف حجز", "Department": "Reservation" },
+"916": { "name": "عادل محمد احمد محمود الشنيطى", "jobTitle": "موظف خدمة عملاء", "Department": "Call Center" },
+"917": { "name": "حازم هانى سيد احمد احمد السيسى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"920": { "name": "وليد عصمت عبدالحفيظ حسان ", "jobTitle": "سائق", "Department": "Transportation" },
+"922": { "name": "عبدالمهيمن محمد عبدالمهيمن سيد احمد", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Poland" },
+"923": { "name": "احمد محمد قايد احمد ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Romanian" },
+"928": { "name": "احمد محمد سعد محمد غز", "jobTitle": "موظف حجز", "Department": "Reservation" },
+"931": { "name": "محمد كرم عبدالعظيم عامر", "jobTitle": "موظف عمليات سياحية", "Department": "Operation" },
+"932": { "name": "ايهاب عبدالودود عبدالسميع حجازى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"933": { "name": "محمد احمد على احمد ", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"935": { "name": "بسام ريان محمد ريان", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"939": { "name": "احمد على اسماعيل احمد مصطفى", "jobTitle": "مرافق مجموعات سياحية ", "Department": "Operation" },
+"940": { "name": "اولها كافيتش", "jobTitle": "مشرفة خدمة عملاء", "Department": "Contracting" },
+"953": { "name": "احمد كرم على احمد الشهابى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"955": { "name": "عبدالله اشرف بدير احمد الغرباوى", "jobTitle": "موظف حجز", "Department": "Reservation" },
+"961": { "name": "ابرام صالح عطيه جرجس", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Poland" },
+"962": { "name": "مصطفى ممدوح عبدالله محمود ", "jobTitle": "موظف حجز", "Department": "Reservation" },
+"969": { "name": "عمر عبدالفتاح عبدالتواب حسن", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"970": { "name": "يورى بيرزانسكى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Poland" },
+"971": { "name": "مصطفى محمد سيد سليمان", "jobTitle": "موظف", "Department": "Assistance Services" },
+"972": { "name": "مازن زغلول محمد احمد سعيد", "jobTitle": "موظف تحليل اسعار", "Department": "Pricing" },
+"973": { "name": "عبدالرحمن سعيد احمد عثمان", "jobTitle": "موظف تحليل أسعار", "Department": "Product" },
+"974": { "name": "احمد سعيد احمد فؤاد", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"975": { "name": "محمد اسماعيل صالح اسماعيل", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"976": { "name": "محمد اسماعيل محمود غانم", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"981": { "name": "احمد محمد عبداللطيف عطاالله", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"983": { "name": "جرجس الفونس ابراهيم عبدالمسيح", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"984": { "name": "سيد محمد السيد الميهى", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"985": { "name": "ندى محمد رجب زكى عبدالسيد", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"988": { "name": "انطون البرت بشرى داود", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"989": { "name": "ايمن بديع محمد رفاعى", "jobTitle": "سائق", "Department": "Transportation" },
+"990": { "name": "احمد جميل على همام", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"995": { "name": "ابراهيم السيد ابراهيم يونس", "jobTitle": "سائق", "Department": "Transportation" },
+"997": { "name": "محمد عبدالمقصود فتح النور هندى", "jobTitle": "سائق", "Department": "Transportation" },
+"999": { "name": "يوسف محمود محمود درباله", "jobTitle": "سائق", "Department": "Transportation" },
+"1001": { "name": "محمد محمود كامل عمامه", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1002": { "name": "محمد سمير محمد عبدالرحمن", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1003": { "name": "محمد احمد حسن شحاته", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1006": { "name": "محمود محمد طلعت محمود فؤاد محمد ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1014": { "name": "مصطفى حسنى سعد النجار", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Poland" },
+"1017": { "name": "هادى علاء الدين طه شعيب", "jobTitle": "سائق", "Department": "Transportation" },
+"1019": { "name": "محمد جمال احمد محمد عثمان", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1024": { "name": "محمد جمال محمد مصطفى عبدالمعطى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1026": { "name": "ادهم محمد صابر الشاعر", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1028": { "name": "محمد محمد عطوه عمران", "jobTitle": "سائق", "Department": "Transportation" },
+"1029": { "name": "استا تفارداسكينى ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Lithuanian" },
+"1030": { "name": "عبدالرحمن عبدالعزيز كامل شويته", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1031": { "name": "محمد ابراهيم رياض ابو العنين الشيخ", "jobTitle": "سائق", "Department": "Transportation" },
+"1032": { "name": "محمد عبدالرازق احمد سالم البطراوى", "jobTitle": "مدير حركة النقل", "Department": "Transportation" },
+"1033": { "name": "مجدى جمال لطفى بطيخ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1041": { "name": "عبدالرحمن عصام فؤاد محمود محمد ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1042": { "name": "محمود صلاح ابوزيد عبدالعزيز", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1044": { "name": "شريف محمود عبدالجواد ابراهيم ", "jobTitle": "موظف عمليات سياحية", "Department": "Operation" },
+"1045": { "name": "نعيم سعد برتله خليل", "jobTitle": "سائق", "Department": "Transportation" },
+"1046": { "name": "خالد ناصر عبدالحميد مصطفى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1052": { "name": "محمد احمد ابراهيم محمد شعبان", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1053": { "name": "اسلام محمد رمضان مندور", "jobTitle": "سائق", "Department": "Transportation" },
+"1054": { "name": "محمد ابوطالب محمد عبدالغنى", "jobTitle": "سائق", "Department": "Transportation" },
+"1061": { "name": "جوزيف ادوارد رياض عبدالملك", "jobTitle": "مرافق مجموعات سياحية (ايطالى)", "Department": "Operation (Italian)" },
+"1062": { "name": "احمد صلاح حسن بشير", "jobTitle": "سائق", "Department": "Transportation" },
+"1068": { "name": "فواز احمد على احمد", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"1070": { "name": "اسحق اشعى حسب الله ذكى", "jobTitle": "موظف تحليل أسعار", "Department": "Product" },
+"1071": { "name": "عمر ايمن عبدالرحمن احمد محمد الفولى ", "jobTitle": "موظف حجز", "Department": "Reservation" },
+"1077": { "name": "سيف الدين محمد احمد العيدراوس", "jobTitle": "موظف تحليل أسعار", "Department": "Pricing" },
+"1078": { "name": "احمد محمد عبدالواحد مرسى ", "jobTitle": "مراقب جوده", "Department": "Quality Control English" },
+"1079": { "name": "محمد عبدالله طه خميس", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1080": { "name": "عمر خالد احمد ابراهيم", "jobTitle": "موظف تحليل أسعار", "Department": "Pricing" },
+"1081": { "name": "احمد جمال ابو المجد احمد", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"1082": { "name": "حسن هشام حسن السباعى خطاب", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1083": { "name": "محمد سمير متولى السيد احمد", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1085": { "name": "على مصطفى عبدالرؤوف عبدالصمد", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"1089": { "name": "حسام عبداللطيف عبدالعزيز زايد", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1090": { "name": "الفريد لوت", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Estonian" },
+"1096": { "name": "مصطفى اسماعيل مغازى اللقانى", "jobTitle": "موظف مبيعات رحلات", "Department": "Excursion Sales" },
+"1101": { "name": "ايهاب على حسن محمد", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1104": { "name": "محمد حسين محمد عبدالحميد", "jobTitle": "موظف عمليات سياحية", "Department": "Operation" },
+"1109": { "name": "مينا عماد عطيه كراس", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1110": { "name": "شيماء محمد محمد السيد خطاب", "jobTitle": "مرافقة مجموعات سياحية", "Department": "Operation" },
+"1111": { "name": "مى محمد عبدالغفار محمد حجازى", "jobTitle": "مرافقة مجموعات سياحية", "Department": "Operation" },
+"1114": { "name": "اميره سامى السباعى محمد نافع", "jobTitle": "مرافقة مجموعات سياحية", "Department": "Operation (English)" },
+"1115": { "name": "مايا محمد فاروق محمد ", "jobTitle": "مرافقة مجموعات سياحية", "Department": "Operation" },
+"1016": { "name": "عبدالرحمن يوسف عز الدين محمد", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1116": { "name": "حسام الدين احمد حسين على محمود", "jobTitle": "مرافق مجموعات سياحية (ايطالى)", "Department": "Operation (Italian)" },
+"1117": { "name": "حسان محمود القطب محمد رمضان", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"1118": { "name": "مصطفى هشام ابو المحاسن عبدالعال", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"1119": { "name": "احمد سيد أدم موسى ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1120": { "name": "يوسف حازم محمد حسن", "jobTitle": "مرافق مجموعات سياحية (ايطالى)", "Department": "Operation (Italian)" },
+"1121": { "name": "رامز موسى امين ميخائيل ", "jobTitle": "موظف حجز", "Department": "Reservation" },
+"1122": { "name": "يمنى محسن محمد فضل ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1123": { "name": "محمد عبدالمجيد احمد سليمان ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1124": { "name": "محمد عيد عبدالهادى عوض الله ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1131": { "name": "محمد عبداللاه مصطفى جابر ", "jobTitle": "موظف تحليل أسعار", "Department": "Pricing" },
+"1132": { "name": "مروه محمود معوض عبدالله خضر", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1133": { "name": "نور وهبى حسن رشدى محمد وهبى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1134": { "name": "علاء فتحى عبدالمحسن شرف", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Poland" },
+"1135": { "name": "امير جمال السيد ابراهيم القللى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Poland" },
+"1136": { "name": "الحسين صالح عبداللطيف ناصر", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1137": { "name": "عاطف شحاته محمد عبدالمجيد ", "jobTitle": "موظف نقل", "Department": "Transportation" },
+"1138": { "name": "ادولف ميلاد سليمان عبده ", "jobTitle": "مرافق مجموعات سياحية (ايطالى)", "Department": "Operation (Italian)" },
+"1139": { "name": "يوستينا باسكونايتى ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Lithuanian" },
+"1141": { "name": "محمد حمدى عبدالعظيم سلومه", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1142": { "name": "فتحى سيد احمد فتحى بيومى", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"1145": { "name": "عبدالله سعيد حنفى حنفى ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1146": { "name": "هانى احمد ابوالمكارم قبيصى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation (English)" },
+"1148": { "name": "صموئيل صفوت صابر شنوده", "jobTitle": "سائق", "Department": "Transportation" },
+"1149": { "name": "ابراهيم محمد عبدالستار شادى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Poland" },
+"1151": { "name": "احمد البدرى احمد حسن", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1152": { "name": "حسين طارق حسين عيسى ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation Poland" },
+"1153": { "name": "مصطفى عبدالوهاب محمد عبدالوهاب", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1154": { "name": "كريم حامد دسوقى محمود", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1155": { "name": "محمود أيمن احمد متولى ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1156": { "name": "غاده سعد غريب ابراهيم حسن طوبار", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1157": { "name": "ايمن موسى محمد على عيد", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation (English)" },
+"1160": { "name": "محمد احمد مطاوع ابراهيم شحاته", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1161": { "name": "عبدالحميد سليمان عبدالحميد العميرى", "jobTitle": "عامل ساحه انتظار السيارات", "Department": "Transportation" },
+"1163": { "name": "مصطفى مرسى سعدالدين الجنادى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1165": { "name": "توماس ميلاد فرنسيس حنا", "jobTitle": "موظف تحليل أسعار", "Department": "Product" },
+"1166": { "name": "احمد محمود ثابت عبدالنعيم", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1167": { "name": "اسامه محمد عبدالحميد محمد ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1168": { "name": "اسلام يسرى كامل عبدالحليم", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1169": { "name": "عمر سامى خميس عبدالدايم", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1170": { "name": "هانى جلال حافظ الفرماوى ", "jobTitle": "سائق", "Department": "Transportation" },
+"1173": { "name": "مينا ويصا شنوده ويصا ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1174": { "name": "زياد ناصر محمد عبد السميع محمد", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1176": { "name": "زين العابدين ابو سكينه احمد محى الدين ", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1182": { "name": "احمد خالد على حسن", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"1183": { "name": "جمال الدين حسين محمد حسن", "jobTitle": "مرافق مجموعات سياحية (ايطالى)", "Department": "Operation (Italian)" },
+"1184": { "name": "اسراء مختار عبدالفتاح محمد عامر", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1185": { "name": "ابانوب رأفت رومانى جرجس", "jobTitle": "موظف حجز", "Department": "Reservation" },
+"1186": { "name": "احمد جمال احمد الشرقاوى", "jobTitle": "موظف تحليل أسعار", "Department": "Product" },
+"1187": { "name": "محمد وائل حسن عبدالحميد", "jobTitle": "محاسب", "Department": "Accounting" },
+"1190": { "name": "محمد ناصر اسماعيل ابراهيم ", "jobTitle": "سائق", "Department": "Transportation" },
+"1191": { "name": "ايمن لمعى ميخائيل بسطا ميخائيل ", "jobTitle": "سائق", "Department": "Transportation" },
+"1192": { "name": "محمد شعبان يونس على ", "jobTitle": "سائق", "Department": "Transportation" },
+"1193": { "name": "حسين اشرف سعد الشويمى ", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"1197": { "name": "رامى رافت كمال فؤاد", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"1198": { "name": "محمد جمال عبدالمنعم  محمد", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"1199": { "name": "رضا عبيد عبدالرحمن عبدالمجيد", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1200": { "name": "محمد اسعد على محمد", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"1201": { "name": "احمد ابراهيم مسعد شولح", "jobTitle": "مرافق مجموعات سياحية (انجليزى)", "Department": "Operation (English)" },
+"1202": { "name": "نهاد ناصف عبدربه عوض", "jobTitle": "موظف حجز", "Department": "Reservation" },
+"1203": { "name": "احمد بدر موسى محمد موسى", "jobTitle": "مرافق مجموعات سياحية", "Department": "Operation" },
+"815": { "name": "ماركو جميل فوزى غالى", "jobTitle": "محاسب", "Department": "Dive up" },
+"1000": { "name": "عمرو صلاح رياض عبدالعظيم غلوش ", "jobTitle": "مدير تسويق", "Department": "Fun up" },
+"1003": { "name": "هشام صلاح رياض عبدالعظيم", "jobTitle": "مدير عمليات", "Department": "Fun up" },
+"2011": { "name": "ايمن احمد محمد ", "jobTitle": "مدير حركة", "Department": "Dive up" },
+"2012": { "name": "مينا يعقوب ذكى", "jobTitle": "مدير عمليات ", "Department": "Dive up" },
+"2013": { "name": "وائل صابر يقين", "jobTitle": "مدير استقبال", "Department": "Dive up" },
+"2014": { "name": "ريمون كرم عزيز", "jobTitle": "مدير استقبال", "Department": "Dive up" },
+"901": { "name": "Yulia Ivanova", "jobTitle": "Shopping", "Department": "Shopping" },
+"902": { "name": "Tatyana Dimitrovich", "jobTitle": "Shopping", "Department": "Shopping" },
+"903": { "name": "Yulia Dimova", "jobTitle": "Shopping", "Department": "Shopping" },
+"904": { "name": "Yana Arman", "jobTitle": "Shopping", "Department": "Shopping" },
+"905": { "name": "Tatiana Kazanskaya", "jobTitle": "Shopping", "Department": "Shopping" },
+"905": { "name": "Liliia Sirous", "jobTitle": "Asst. Shopping", "Department": "Asst. Shopping" },
+"906": { "name": "Julia Orlova", "jobTitle": "Shopping", "Department": "Shopping" },
+"907": { "name": "Natalia Borovikova", "jobTitle": "Shopping", "Department": "Shopping" },
+"908": { "name": "Dace Ozolina", "jobTitle": "Shopping", "Department": "Shopping" },
+"909": { "name": "Anastasia Gromada", "jobTitle": "Shopping", "Department": "Shopping" },
+"910": { "name": "Iskova Olena", "jobTitle": "Shopping", "Department": "Shopping" },
+"912": { "name": "Kasian Yana", "jobTitle": "Shopping", "Department": "Shopping" },
+"913": { "name": "Davidovich Victoria", "jobTitle": "Shopping", "Department": "Shopping" },
+"914": { "name": "Larisa Vishnevskaya", "jobTitle": "Shopping", "Department": "Shopping" },
+"915": { "name": "Natalia Gryazniva", "jobTitle": "Shopping", "Department": "Shopping" },
+"916": { "name": "Yurina Olga", "jobTitle": "Shopping", "Department": "Shopping" },
+"916": { "name": "Marianna Balagurova", "jobTitle": "Asst. Shopping", "Department": "Asst. Shopping" },
+"918": { "name": "Lina Beloded", "jobTitle": "Shopping", "Department": "Shopping" },
+"919": { "name": "Tatyana Kravchuk", "jobTitle": "Shopping", "Department": "Shopping" },
+"2001": { "name": "Halauko Alisa", "jobTitle": "Shopping", "Department": "Shopping" },
+"2002": { "name": "Natalia Sokolova", "jobTitle": "Shopping", "Department": "Shopping" },
+"2003": { "name": "Grosheva Tatiana", "jobTitle": "Shopping", "Department": "Shopping" },
+"2003": { "name": "Havryliuk Svetlana", "jobTitle": "Shopping", "Department": "Shopping" },
+"2004": { "name": "Balog Svetlana", "jobTitle": "Shopping", "Department": "Shopping" },
+"2006": { "name": "Nataliia Kriachek", "jobTitle": "Shopping", "Department": "Shopping" },
+"2007": { "name": "Darya Lampitskaya", "jobTitle": "Shopping", "Department": "Shopping" },
+"2008": { "name": "Gabrilla Caon", "jobTitle": "Alpi Tour", "Department": "Alpi Tour" },
+"2009": { "name": "Mariem Waleed Ahmed", "jobTitle": "Shopping", "Department": "Shopping" },
+"2010": { "name": "Yulia Maikut", "jobTitle": "Shopping", "Department": "Shopping" },
+"501": { "name": "Yana Lytyn", "jobTitle": "Shopping", "Department": "Shopping" },
+"2011": { "name": "IRYNA PASHKOVA", "jobTitle": "Shopping", "Department": "Shopping" },
+
+
+
+
+   
+         
+            
+            
+            
+            
+        
+        };
+
+        // وظيفة البحث
+        function searchEmployee() {
+            const input = document.getElementById('employeeInput').value.trim().toLowerCase();
+            const tableBody = document.getElementById('employeeTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = ''; // تفريغ الجدول
+
+// إذا كان مربع الإدخال فارغًا، لا نعرض أي نتائج
+if (input === '') {
+    resultCountElement.innerHTML = 'Please enter an employee ID or name to search.'; // رسالة للمستخدم
+    return; // لا تتابع في البحث إذا كان الإدخال فارغًا
+}
+
+
+
+            const results = [];
+
+            // البحث
+            if (employees[input]) {
+                results.push({ id: input, ...employees[input] });
+            } else {
+                for (const [id, data] of Object.entries(employees)) {
+                    if (data.name.toLowerCase().includes(input)) {
+                        results.push({ id, ...data });
+                    }
+                }
+            }
+
+            // عرض النتائج
+            if (results.length > 0) {
+                results.forEach((employee) => {
+                    tableBody.innerHTML += `
+                        <tr>
+                            <td><strong>Name</strong></td>
+                            <td><strong>${employee.name}</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>ID</strong></td>
+                            <td><strong>${employee.id}</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Job</strong></td>
+                            <td><strong>${employee.jobTitle}</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Level</strong></td>
+                            <td><strong>${employee.level}</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="border-bottom: 2px solid #007BFF;"></td>
+                        </tr>
+                    `;
+                });
+            } else {
+                tableBody.innerHTML = '<tr><td colspan="2" class="no-result">No employee found with this ID or Name.</td></tr>';
+            }
+
+            // الانتقال إلى أعلى الصفحة
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
